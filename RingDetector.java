@@ -56,7 +56,10 @@ public class RingDetector  {
                     if "Quad" set numberOfRings to 4
                     if "Single" then set numberOfRings to 1
                     if "NO Rings"  then set numberOfRings to 0
-                    if (recognition.getLabel() == "Quad")
+                    if (recognition.getLabel() == "Quad"){
+
+                    }
+
                    //telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                             //recognition.getLeft(), recognition.getTop());
                     //telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
