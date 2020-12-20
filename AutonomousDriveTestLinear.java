@@ -65,17 +65,19 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  */
 
 @Autonomous(name="Autonomous", group="Pushbot")
-@Disabled
+//@Disabled
 public class AutonomousDriveTestLinear extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
     Commands commands = new Commands();
+    RingDetector ringDetector = new RingDetector();
 
     @Override
     public void runOpMode() {
 
         commands.init(hardwareMap);
+        ringDetector.init(hardwareMap);
 
         waitForStart();
         runtime.reset();
@@ -88,6 +90,7 @@ public class AutonomousDriveTestLinear extends LinearOpMode {
             telemetry.addData("leftRear : ", commands.leftRear.getCurrentPosition());
             telemetry.addData("rightFront : ", commands.rightFront.getCurrentPosition());
             telemetry.addData("rightRear : ", commands.rightRear.getCurrentPosition());
+            telemetry.addData("rings : ", ringDetector.ringNumber());
             telemetry.update();
 
         }
