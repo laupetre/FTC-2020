@@ -54,7 +54,7 @@ public class Autonomous_Red_Left extends OpMode
 
         //initialize hardware
         commands.init(hardwareMap);
-        ringDetector.init(hardwareMap);
+        //ringDetector.init(hardwareMap);
 
         //grab the wobble
 
@@ -72,6 +72,7 @@ public class Autonomous_Red_Left extends OpMode
      */
     @Override
     public void init_loop() {
+
     }
 
     /*
@@ -80,6 +81,7 @@ public class Autonomous_Red_Left extends OpMode
     @Override
     public void start() {
         runtime.reset();
+        ringDetector.init(hardwareMap);
     }
 
     /*
@@ -95,12 +97,16 @@ public class Autonomous_Red_Left extends OpMode
         //move the robot to launch line
         rings = ringDetector.ringNumber(); // -1 0 1 4
 
-        "Quad" "quad"
-
         //check if we detected the rings
         if ( rings == 0 || rings == 1 || rings == 4 ){
 
             //we can continue
+
+            // move the robot to the shooting zone
+
+            // move to A B or C zone based on how many rings detected
+
+            // stop over launch line
 
         }
         else{
@@ -109,7 +115,7 @@ public class Autonomous_Red_Left extends OpMode
 
         //commands.moveForward(12,0.5,10);
 
-        sleep(1000);
+        //sleep(1000);
 
   //      commands.moveBackwards(12,0.5,10);
        // sleep(1000);
@@ -134,6 +140,7 @@ public class Autonomous_Red_Left extends OpMode
      */
     @Override
     public void stop() {
+
     }
 
     public void sleep(int milis){

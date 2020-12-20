@@ -52,11 +52,19 @@ public class RingDetector  {
                 // step through the list of recognitions and display boundary info.
                 int i = 0;
                 for (Recognition recognition : updatedRecognitions) {
-                   "Quad" "Single" recognition.getLabel()
-                    if "Quad" set numberOfRings to 4
-                    if "Single" then set numberOfRings to 1
-                    if "NO Rings"  then set numberOfRings to 0
-                    if (recognition.getLabel() == "Quad")
+
+                    //
+                    if (recognition.getLabel() == "Quad"){
+                        numberOfRings = 4;
+                    }
+                    else if (recognition.getLabel() == "Single"){
+                        numberOfRings = 1;
+
+                    }
+                    else{
+                        numberOfRings = 0;
+                    }
+
 
                    //telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                             //recognition.getLeft(), recognition.getTop());
@@ -94,11 +102,12 @@ public class RingDetector  {
             //tfod.setZoom(2.5, 1.78);
         }
 
-
-
+/*
         if (tfod != null) {
             tfod.shutdown();
         }
+*/
+
     }
 
     /**
