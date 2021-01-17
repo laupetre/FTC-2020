@@ -103,9 +103,7 @@ public class Autonomous_Red_Right extends OpMode
             //face forward
             commands.leftRearPivot(-10, 0.5, 3);
 
-            // move the robot to the shooting zone
-            commands.moveForward(48, 0.5, 5);
-            // move to A B or C zone based on how many rings detected
+           // move to A B or C zone based on how many rings detected
 
             //shoot the rings
             //decide if we slide the robot or turn it CCW
@@ -115,37 +113,39 @@ public class Autonomous_Red_Right extends OpMode
                 //move forward drop wobble move back slide left shoot move forward to park
                 commands.moveForward(36,0.5,5);
                 sleep(100);
-                commands.
+                commands.slideRight(18,0.5,4);
+                sleep(100);
+                //drop wobble
+
+                commands.moveBackwards(12,0.5,3);
+                sleep(100);
+                commands.rotateCounterClockwise(9,0.5,2);
+                sleep(100);
+                commands.moveForward(36,0.5,5);
+                sleep(100);
+                commands.rotateClockwise(9,0.5,3);
+                //shoot rings
+
+                commands.moveForward(12,0.5,3);
 
             }
             else if (rings == 1){
-                //move forward rotate 180 slide to the left drop off wobble
-                //slide to the right, move forward and park
-                commands.moveForward(24,0.5,4);
+                //move forward drop wobble move back rotate shoot park
+                commands.moveForward(82,0.5,10);
                 sleep(100);
-                commands.rotateClockwise(12,0.5,4);
-                sleep(100);
-                commands.slideLeft(12,0.5,6);
-                sleep(100);
-                //drop off wobble
+                //drop wobble
 
-                commands.slideRight(12,0.5,5);
+
+                commands.moveBackwards(48,0.5,5);
                 sleep(100);
-                commands.moveForward(24,0.5,5);
+                //shoot rings
+
+                commands.moveForward(12,0.5,3);
+
             }
             else {
-                //move forward turn CW move forward drop off wobble move back slide right and park
-                commands.moveForward(55,0.5,10);
-                sleep(100);
-                commands.rotateClockwise(12,0.5,3);
-                sleep(100);
-                commands.moveForward(48,0.5,10);
-                sleep(100);
-                //drop the wobble
+                //
 
-                commands.moveBackwards(10,0.5,4);
-                sleep(100);
-                commands.slideRight(55,0.5,10);
 
             }
 
