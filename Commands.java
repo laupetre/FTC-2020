@@ -289,4 +289,82 @@ public class Commands extends HardwareMapping{
 
 
     }
+
+    /**
+     *
+     * @param distance positive distance is CCW
+     * @param power
+     * @param timeout
+     */
+    public void leftRearPivot(float distance, double power, int timeout){
+
+        int newTarget;
+
+        //reset the time
+        runtime.reset();
+
+        newTarget = (int)(distance * COUNTS_PER_INCH);
+
+        rightFront.setPower(power);
+        rightRear.setPower(power);
+
+        rightFront.setTargetPosition(newTarget);
+        rightRear.setTargetPosition(newTarget);
+
+        // Turn On RUN_TO_POSITION
+        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while ( ( runtime.seconds() < timeout ) &&
+                (rightFront.isBusy() || rightRear.isBusy())
+        ) {
+
+        }
+
+        rightFront.setPower(0);
+        rightRear.setPower(0);
+
+        //reset encoders
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    /**
+     *
+     * @param distance positive distance is CW
+     * @param power
+     * @param timeout
+     */
+    public void rightRearPivot(float distance, double power, int timeout){
+
+        int newTarget;
+
+        //reset the time
+        runtime.reset();
+
+        newTarget = (int)(distance * COUNTS_PER_INCH);
+
+        leftFront.setPower(power);
+        leftRear.setPower(power);
+
+        leftFront.setTargetPosition(newTarget);
+        leftRear.setTargetPosition(newTarget);
+
+        // Turn On RUN_TO_POSITION
+        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while ( ( runtime.seconds() < timeout ) &&
+                (leftFront.isBusy() || leftRear.isBusy())
+        ) {
+
+        }
+
+        leftFront.setPower(0);
+        leftRear.setPower(0);
+
+        //reset encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
 }

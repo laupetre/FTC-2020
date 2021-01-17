@@ -102,15 +102,74 @@ public class Autonomous_Red_Left extends OpMode
 
             //we can continue
 
-            // move the robot to the shooting zone
+            //face forward
+            commands.rightRearPivot(-10, 0.5, 3);
 
+            // move the robot to the shooting zone
+            commands.moveForward(48, 0.5, 5);
             // move to A B or C zone based on how many rings detected
+
+            //shoot the rings
+            //decide if we slide the robot or turn it CCW
+
+            //move to A B or C - 0 1 4
+            if (rings == 0){
+                //move forward then slide to drop off the wabble
+                commands.moveForward(12,0.5,3);
+                sleep(100);
+                commands.rotateCounterClockwise(9,0.5,3);
+                sleep(100);
+                commands.moveBackwards(48,0.5,10);
+                sleep(100);
+                commands.slideLeft(10,0.5,4);
+                sleep(100);
+                //drop off the wobble
+                commands.slideRight(10,0.5,4);
+                sleep(100);
+                commands.moveForward(20,0.5,5);
+                sleep(100);
+                //park on the line
+                commands.slideLeft(10,0.5,4);
+
+            }
+            else if (rings == 1){
+                //move forward rotate 180 slide to the left drop off wobble
+                //slide to the right, move forward and park
+                commands.moveForward(24,0.5,4);
+                sleep(100);
+                commands.rotateClockwise(12,0.5,4);
+                sleep(100);
+                commands.slideLeft(12,0.5,6);
+                sleep(100);
+                //drop off wobble
+
+                commands.slideRight(12,0.5,5);
+                sleep(100);
+                commands.moveForward(24,0.5,5);
+            }
+            else {
+                //move forward turn CW move forward drop off wobble move back slide right and park
+                commands.moveForward(55,0.5,10);
+                sleep(100);
+                commands.rotateClockwise(12,0.5,3);
+                sleep(100);
+                commands.moveForward(48,0.5,10);
+                sleep(100);
+                //drop the wobble
+
+                commands.moveBackwards(10,0.5,4);
+                sleep(100);
+                commands.slideRight(55,0.5,10);
+
+            }
 
             // stop over launch line
 
         }
         else{
             //do something
+            //try to detect again is still fail go to a zone random
+            //we still do the shooting
         }
 
         //commands.moveForward(12,0.5,10);
