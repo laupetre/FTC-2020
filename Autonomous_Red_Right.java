@@ -144,9 +144,18 @@ public class Autonomous_Red_Right extends OpMode
 
             }
             else {
-                //
+                //move forward slide right drop wobble move back shoot park
+                commands.moveForward(100,0.5,10);
+                sleep(100);
+                commands.slideRight(12,0.5,3);
+                sleep(100);
+                //drop wobble
 
+                commands.moveBackwards(70,0.5,6);
+                sleep(100);
+                //shoot rings
 
+                commands.moveForward(10,0.5,3);
             }
 
             // stop over launch line
