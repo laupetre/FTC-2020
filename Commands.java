@@ -367,4 +367,9 @@ public class Commands extends HardwareMapping{
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
+
+    private double calculatePower(double power){
+
+        return power;
+    }
 }

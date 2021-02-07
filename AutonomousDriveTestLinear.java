@@ -30,12 +30,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 /**
  * This file illustrates the concept of driving a path based on encoder counts.
@@ -64,7 +60,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonomous", group="Pushbot")
+@Autonomous(name="Test Linear", group="Pushbot")
 //@Disabled
 public class AutonomousDriveTestLinear extends LinearOpMode {
 
@@ -73,18 +69,80 @@ public class AutonomousDriveTestLinear extends LinearOpMode {
     Commands commands = new Commands();
     RingDetector ringDetector = new RingDetector();
 
+    int rings = 4;
+
     @Override
     public void runOpMode() {
 
         commands.init(hardwareMap);
         ringDetector.init(hardwareMap);
 
+        //detect the rings
+
         waitForStart();
         runtime.reset();
 
         while(opModeIsActive()) {
 
+            //move to A B or C - 0 1 4
+            if (rings == 0){
+                //move forward shoot turn CW move back, drop wobble slide right forward slide felt park
+                commands.moveForward(36,0.5,5);
+                sleep(100);
+                commands.rotateClockwise(9,0.5,3);
+                sleep(100);
+                commands.moveBackwards(20,0.5,4);
+                sleep(100);
+                //drop wobble
 
+                commands.slideRight(24,0.5,5);
+                sleep(100);
+                commands.moveForward(48,0.5,6);
+                sleep(100);
+                //park
+                commands.slideLeft(30,0.5,5);
+
+            }
+            else if (rings == 1){
+                //move forward, shoot rings, turn clockwise, move back, drop off wobble, slide right, move forward, slide left and park
+                sleep(100);
+                commands.moveForward(36,0.5,5);
+                //shoot rings
+                sleep(100);
+                commands.rotateClockwise(9,0.5,3);
+                sleep(100);
+                commands.moveBackwards(20,0.5,4);
+                sleep(100);
+                //drop off wobble
+                commands.slideRight(24,0.5,5);
+                sleep(100);
+                commands.moveForward(48,0.5,6);
+                sleep(100);
+                commands.slideLeft(30,0.5,5);
+                //park on line
+
+            }
+            else {
+                //move forward shoot forward slide left drop wobble slide right move backward
+                commands.moveForward(40,0.5,6);
+                sleep(100);
+                //shoot
+
+                commands.moveForward(32,0.5,5);
+                sleep(100);
+                commands.slideLeft(24,0.5,4);
+                sleep(100);
+                //drop wobble
+
+                commands.slideRight(20,0.5,5);
+                sleep(100);
+                //park
+                commands.moveBackwards(62,0.5,6);
+            }
+
+
+            telemetry.addData("rings : ", rings);
+            telemetry.update();
 
             telemetry.addData("leftFront : ", commands.leftFront.getCurrentPosition());
             telemetry.addData("leftRear : ", commands.leftRear.getCurrentPosition());

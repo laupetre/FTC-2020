@@ -30,9 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -45,6 +43,8 @@ public class Autonomous_Red_Left extends OpMode
 
     Commands commands = new Commands();
     RingDetector ringDetector = new RingDetector();
+
+    int rings = 0;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -72,6 +72,8 @@ public class Autonomous_Red_Left extends OpMode
      */
     @Override
     public void init_loop() {
+        //return number of rings
+        rings = ringDetector.ringNumber();
 
     }
 
@@ -89,22 +91,23 @@ public class Autonomous_Red_Left extends OpMode
      */
     @Override
     public void loop() {
-        int rings = 0;
+       // int rings = 0;
 
         //detect rings
         //move the robot to launch place
         //move the robot to landing place
         //move the robot to launch line
-        rings = ringDetector.ringNumber(); // -1 0 1 4
+       // rings = ringDetector.ringNumber(); // -1 0 1 4
 
         //check if we detected the rings
+
         if ( rings == 0 || rings == 1 || rings == 4 ){
 
             //we can continue
 
             //face forward
             commands.rightRearPivot(-10, 0.5, 3);
-
+/*
             // move the robot to the shooting zone
             commands.moveForward(48, 0.5, 5);
             // move to A B or C zone based on how many rings detected
@@ -164,7 +167,7 @@ public class Autonomous_Red_Left extends OpMode
             }
 
             // stop over launch line
-
+*/
         }
         else{
             //do something

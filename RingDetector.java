@@ -1,10 +1,7 @@
-
+ 
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -20,7 +17,7 @@ public class RingDetector  {
     private static final String LABEL_FIRST_ELEMENT = "Quad";
     private static final String LABEL_SECOND_ELEMENT = "Single";
 
-    private int numberOfRings = -1;
+    private int numberOfRings = 0;
 
 
     private static final String VUFORIA_KEY =
@@ -99,7 +96,7 @@ public class RingDetector  {
             // (typically 1.78 or 16/9).
 
             // Uncomment the following line if you want to adjust the magnification and/or the aspect ratio of the input images.
-            //tfod.setZoom(2.5, 1.78);
+            tfod.setZoom(1.5, 1.78);
         }
 
 /*
@@ -138,5 +135,19 @@ public class RingDetector  {
         tfodParameters.minResultConfidence = 0.8f;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
+    }
+
+    public int ringdeDectorLoop(){
+        int loops = 0;
+        int rings = 0;
+
+        rings = this.ringNumber();
+
+        while (loops < 1000 || rings != 1 || rings != 4 ){
+            rings = this.ringNumber();
+            loops++;
+        }
+
+        return rings;
     }
 }

@@ -44,6 +44,8 @@ public class Autonomous_Blue_Right extends OpMode
     Commands commands = new Commands();
     RingDetector ringDetector = new RingDetector();
 
+    int rings = 0;
+
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -71,6 +73,7 @@ public class Autonomous_Blue_Right extends OpMode
     @Override
     public void init_loop() {
 
+        rings = ringDetector.ringNumber();
     }
 
     /*
@@ -87,13 +90,13 @@ public class Autonomous_Blue_Right extends OpMode
      */
     @Override
     public void loop() {
-        int rings = 0;
+      //  int rings = 0;
 
         //detect rings
         //move the robot to launch place
         //move the robot to landing place
         //move the robot to launch line
-        rings = ringDetector.ringNumber(); // -1 0 1 4
+      //  rings = ringDetector.ringNumber(); // -1 0 1 4
 
         //check if we detected the rings
         if ( rings == 0 || rings == 1 || rings == 4 ){

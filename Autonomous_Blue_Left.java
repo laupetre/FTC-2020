@@ -44,6 +44,8 @@ public class Autonomous_Blue_Left extends OpMode
     Commands commands = new Commands();
     RingDetector ringDetector = new RingDetector();
 
+    int rings = 0;
+
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -52,7 +54,7 @@ public class Autonomous_Blue_Left extends OpMode
 
         //initialize hardware
         commands.init(hardwareMap);
-        //ringDetector.init(hardwareMap);
+        ringDetector.init(hardwareMap);
 
         //grab the wobble
 
@@ -70,6 +72,11 @@ public class Autonomous_Blue_Left extends OpMode
      */
     @Override
     public void init_loop() {
+        //detect the rings
+        rings = ringDetector.ringNumber();
+
+        telemetry.addData("rings : ", rings);
+        telemetry.update();
 
     }
 
@@ -79,7 +86,7 @@ public class Autonomous_Blue_Left extends OpMode
     @Override
     public void start() {
         runtime.reset();
-        ringDetector.init(hardwareMap);
+        //ringDetector.init(hardwareMap);
     }
 
     /*
@@ -87,16 +94,13 @@ public class Autonomous_Blue_Left extends OpMode
      */
     @Override
     public void loop() {
-        int rings = 0;
+        //int rings = 0;
 
         //detect rings
         //move the robot to launch place
         //move the robot to landing place
         //move the robot to launch line
-        rings = ringDetector.ringNumber(); // -1 0 1 4
-
-        //check if we detected the rings
-        if ( rings == 0 || rings == 1 || rings == 4 ){
+       // rings = ringDetector.ringNumber(); // -1 0 1 4
 
             //we can continue
 
@@ -164,14 +168,9 @@ public class Autonomous_Blue_Left extends OpMode
                 commands.moveBackwards(62,0.5,6);
             }
 
-            // stop over launch line
 
-        }
-        else{
-            //do something
-            //try to detect again is still fail go to a zone random
-            //we still do the shooting
-        }
+
+            // stop over launch line
 
         //commands.moveForward(12,0.5,10);
 
