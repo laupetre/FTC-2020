@@ -69,20 +69,25 @@ public class AutonomousDriveTestLinear extends LinearOpMode {
     Commands commands = new Commands();
     RingDetector ringDetector = new RingDetector();
 
-    int rings = 4;
+    int rings = -1;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
 
         commands.init(hardwareMap);
         ringDetector.init(hardwareMap);
 
         //detect the rings
+        rings = ringDetector.ringDectorLoop();
+
+        telemetry.addData("rings : ", rings);
+        telemetry.update();
 
         waitForStart();
         runtime.reset();
 
         while(opModeIsActive()) {
+
 
             //move to A B or C - 0 1 4
             if (rings == 0){

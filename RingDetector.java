@@ -137,17 +137,25 @@ public class RingDetector  {
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
 
-    public int ringdeDectorLoop(){
+    public int ringDectorLoop() {
         int loops = 0;
-        int rings = 0;
+        int detectedRings = 0;
 
-        rings = this.ringNumber();
+        detectedRings = this.ringNumber();
 
-        while (loops < 1000 || rings != 1 || rings != 4 ){
-            rings = this.ringNumber();
+        while (loops < 10 && detectedRings == 0 ){
+            detectedRings = this.ringNumber();
+            this.sleep(1000);
             loops++;
         }
 
-        return rings;
+        return detectedRings;
     }
+
+    private void sleep(int milis){
+        try {
+            Thread.sleep(milis);
+        } catch (Exception e){}
+    }
+
 }

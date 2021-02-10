@@ -202,7 +202,7 @@ public class Autonomous_Blue_Left extends OpMode
 
     }
 
-    public void sleep(int milis){
+    private void sleep(int milis){
         try {
             Thread.sleep(milis);
         } catch (Exception e){}
