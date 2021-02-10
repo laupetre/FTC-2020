@@ -30,87 +30,66 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+/**
+ * This file illustrates the concept of driving a path based on encoder counts.
+ * It uses the common Pushbot hardware class to define the drive on the robot.
+ * The code is structured as a LinearOpMode
+ *
+ * The code REQUIRES that you DO have encoders on the wheels,
+ *   otherwise you would use: PushbotAutoDriveByTime;
+ *
+ *  This code ALSO requires that the drive Motors have been configured such that a positive
+ *  power command moves them forwards, and causes the encoders to count UP.
+ *
+ *   The desired path in this example is:
+ *   - Drive forward for 48 inches
+ *   - Spin right for 12 Inches
+ *   - Drive Backwards for 24 inches
+ *   - Stop and close the claw.
+ *
+ *  The code is written using a method called: encoderDrive(speed, leftInches, rightInches, timeoutS)
+ *  that performs the actual movement.
+ *  This methods assumes that each movement is relative to the last stopping place.
+ *  There are other ways to perform encoder based moves, but this method is probably the simplest.
+ *  This code uses the RUN_TO_POSITION mode to enable the Motor controllers to generate the run profile
+ *
+ * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
+ * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
+ */
 
-@Autonomous(name="Blue-Left", group="Iterative Opmode")
+@Autonomous(name="Blue-Left", group="Pushbot")
 //@Disabled
-public class Autonomous_Blue_Left extends OpMode
-{
-    // Declare OpMode members.
+public class Autonomous_Blue_Left extends LinearOpMode {
+
     private ElapsedTime runtime = new ElapsedTime();
 
     Commands commands = new Commands();
     RingDetector ringDetector = new RingDetector();
 
-    int rings = 0;
+    int rings = -1;
 
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
 
-        //initialize hardware
         commands.init(hardwareMap);
         ringDetector.init(hardwareMap);
 
-        //grab the wobble
-
-
- //       telemetry.addData("leftFront : ", commands.leftFront.getCurrentPosition());
-  //      telemetry.addData("leftRear : ", commands.leftRear.getCurrentPosition());
-  //      telemetry.addData("rightFront : ", commands.rightFront.getCurrentPosition());
-  //      telemetry.addData("rightRear : ", commands.rightRear.getCurrentPosition());
-
-
-    }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
-     */
-    @Override
-    public void init_loop() {
         //detect the rings
-        rings = ringDetector.ringNumber();
+        rings = ringDetector.ringDectorLoop();
 
         telemetry.addData("rings : ", rings);
         telemetry.update();
 
-    }
-
-    /*
-     * Code to run ONCE when the driver hits PLAY
-     */
-    @Override
-    public void start() {
+        waitForStart();
         runtime.reset();
-        //ringDetector.init(hardwareMap);
-    }
 
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
-     */
-    @Override
-    public void loop() {
-        //int rings = 0;
-
-        //detect rings
-        //move the robot to launch place
-        //move the robot to landing place
-        //move the robot to launch line
-       // rings = ringDetector.ringNumber(); // -1 0 1 4
-
-            //we can continue
+        while(opModeIsActive()) {
 
             //face forward
-            commands.rightRearPivot(-10,0.5,3);;
-
-           // move to A B or C zone based on how many rings detected
-
-            //shoot the rings
-            //decide if we slide the robot or turn it CCW
+            commands.rightRearPivot(-10, 0.5, 3);
 
             //move to A B or C - 0 1 4
             if (rings == 0){
@@ -169,43 +148,20 @@ public class Autonomous_Blue_Left extends OpMode
             }
 
 
+            telemetry.addData("rings : ", rings);
+            telemetry.update();
 
-            // stop over launch line
+            telemetry.addData("leftFront : ", commands.leftFront.getCurrentPosition());
+            telemetry.addData("leftRear : ", commands.leftRear.getCurrentPosition());
+            telemetry.addData("rightFront : ", commands.rightFront.getCurrentPosition());
+            telemetry.addData("rightRear : ", commands.rightRear.getCurrentPosition());
+            telemetry.addData("rings : ", ringDetector.ringNumber());
+            telemetry.update();
 
-        //commands.moveForward(12,0.5,10);
+        }
 
-        //sleep(1000);
-
-  //      commands.moveBackwards(12,0.5,10);
-       // sleep(1000);
-
-      //  commands.leftFront.setPower(0.5);
-      //  commands.rightFront.setPower(0.5);
-
-        // Show the elapsed game time and wheel power.
-      //  telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("leftFront : ", commands.leftFront.getCurrentPosition());
-        telemetry.addData("leftRear : ", commands.leftRear.getCurrentPosition());
-        telemetry.addData("rightFront : ", commands.rightFront.getCurrentPosition());
-        telemetry.addData("rightRear : ", commands.rightRear.getCurrentPosition());
-        telemetry.addData("rings : ", rings);
-        telemetry.update();
-
-        //  telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-    }
-
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
-    @Override
-    public void stop() {
 
     }
 
-    private void sleep(int milis){
-        try {
-            Thread.sleep(milis);
-        } catch (Exception e){}
-    }
 
 }
