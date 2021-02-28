@@ -116,6 +116,7 @@ public class Autonomous_Red_Right extends LinearOpMode {
 
                 commands.moveForward(12,0.5,3);
 
+                sleep(30000);
             }
             else if (rings == 1){
                 //move forward drop wobble move back rotate shoot park
@@ -130,6 +131,7 @@ public class Autonomous_Red_Right extends LinearOpMode {
 
                 commands.moveForward(12,0.5,3);
 
+                sleep(30000);
             }
             else {
                 //move forward slide right drop wobble move back shoot park
@@ -144,6 +146,8 @@ public class Autonomous_Red_Right extends LinearOpMode {
                 //shoot rings
 
                 commands.moveForward(10,0.5,3);
+
+                sleep(30000);
             }
 
             // stop over launch line

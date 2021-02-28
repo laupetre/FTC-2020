@@ -117,6 +117,7 @@ public class Autonomous_Red_Left extends LinearOpMode {
                 //park on the line
                 commands.slideLeft(10,0.5,4);
 
+                sleep(30000);
             }
             else if (rings == 1){
                 //move forward rotate 180 slide to the left drop off wobble
@@ -132,6 +133,8 @@ public class Autonomous_Red_Left extends LinearOpMode {
                 commands.slideRight(12,0.5,5);
                 sleep(100);
                 commands.moveForward(24,0.5,5);
+
+                sleep(30000);
             }
             else {
                 //move forward turn CW move forward drop off wobble move back slide right and park
@@ -147,6 +150,7 @@ public class Autonomous_Red_Left extends LinearOpMode {
                 sleep(100);
                 commands.slideRight(55,0.5,10);
 
+                sleep(30000);
             }
 
             // stop over launch line

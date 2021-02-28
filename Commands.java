@@ -368,6 +368,49 @@ public class Commands extends HardwareMapping{
         leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
+    public void speedIncrease(float distance, double power, int timeout){
+        int newTarget;
+
+        //reset the current time
+        runtime.reset();
+
+        newTarget =  (int)(distance * COUNTS_PER_INCH);
+
+        leftFront.setTargetPosition(newTarget);
+        leftRear.setTargetPosition(newTarget);
+        rightFront.setTargetPosition(newTarget);
+        rightRear.setTargetPosition(newTarget);
+
+        // Turn On RUN_TO_POSITION
+        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        leftFront.setPower(this.calculatePower(power));
+        leftRear.setPower(power);
+        rightFront.setPower(power);
+        rightRear.setPower(power);
+
+        while ( ( runtime.seconds() < timeout ) &&
+                (leftFront.isBusy() || rightFront.isBusy() || leftRear.isBusy() || rightRear.isBusy())
+        ) {
+
+        }
+
+
+        leftFront.setPower(0);
+        leftRear.setPower(0);
+        rightFront.setPower(0);
+        rightRear.setPower(0);
+
+        //reset encoders
+        leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+    }
     private double calculatePower(double power){
 
         return power;

@@ -117,6 +117,8 @@ public class Autonomous_Blue_Right extends LinearOpMode {
                 sleep(100);
                 //park
 
+                sleep(30000);
+
             }
             else if (rings == 1){
                 //move forward shoot move forward rotate CCW drop wobble move forward slide left park\
@@ -135,7 +137,8 @@ public class Autonomous_Blue_Right extends LinearOpMode {
                 sleep(100);
                 //park
                 commands.slideLeft(72,0.5,8);
-                sleep(100);
+
+                sleep(30000);
 
             }
             else {
@@ -154,6 +157,8 @@ public class Autonomous_Blue_Right extends LinearOpMode {
                 sleep(100);
                 //park
                 commands.moveBackwards(62,0.5,6);
+
+                sleep(30000);
             }
 
             // stop over launch line

@@ -109,6 +109,8 @@ public class Autonomous_Blue_Left extends LinearOpMode {
                 //park
                 commands.slideLeft(30,0.5,5);
 
+                sleep(30000);
+
             }
             else if (rings == 1){
                 //move forward, shoot rings, turn clockwise, move back, drop off wobble, slide right, move forward, slide left and park
@@ -128,6 +130,8 @@ public class Autonomous_Blue_Left extends LinearOpMode {
                 commands.slideLeft(30,0.5,5);
                 //park on line
 
+                sleep(30000);
+
             }
             else {
                 //move forward shoot forward slide left drop wobble slide right move backward
@@ -145,6 +149,7 @@ public class Autonomous_Blue_Left extends LinearOpMode {
                 sleep(100);
                 //park
                 commands.moveBackwards(62,0.5,6);
+                sleep(30000);
             }
 
 
