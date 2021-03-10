@@ -415,6 +415,7 @@ public class Commands extends HardwareMapping{
     private double calculatePower(double power){
         //if the distance is > 10" and traveled 10"
         //increase the power by 0.01
+        /*
         if ( encoder steps 1000 and  encode steps > ){
             power += 0.01;
         }
@@ -424,6 +425,8 @@ public class Commands extends HardwareMapping{
         else{
             power = 0.5;
         }
+
+         */
         return power;
     }
 }

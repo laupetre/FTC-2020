@@ -29,8 +29,8 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -58,6 +58,12 @@ public class HardwareMapping
     public DcMotor  rightFront  = null;
     public DcMotor  leftRear   = null;
     public DcMotor  rightRear  = null;
+    public DcMotor conveyorMotor = null;
+    public DcMotor launcherMotor = null;
+    public DcMotor wobbleGoalMotor = null;
+    public CRServo intakeServo = null;
+    public Servo wobbleGoalClampServo = null;
+    public DcMotor inclineMotor = null;
 
 
     //public DcMotor  leftArm     = null;
@@ -87,8 +93,15 @@ public class HardwareMapping
         rightFront = hwMap.get(DcMotor.class, "rightFront");
         leftRear = hwMap.get(DcMotor.class, "leftRear");
         rightRear = hwMap.get(DcMotor.class, "rightRear");
+        conveyorMotor = hwMap.get(DcMotor.class, "conveyorMotor");
+        launcherMotor = hwMap.get(DcMotor.class, "launcherMotor");
+        wobbleGoalMotor = hwMap.get(DcMotor.class, "wobbleGoalMotor");
+        intakeServo = hwMap.get(CRServo.class, "intakeServo");
+        wobbleGoalClampServo = hwMap.get(Servo.class, "wobbleGoalClampServo");
+        inclineMotor = hwMap.get(DcMotor.class, "inclineMotor");
 
-       // leftArm    = hwMap.get(DcMotor.class, "left_arm");
+
+        // leftArm    = hwMap.get(DcMotor.class, "left_arm");
 
         leftFront.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rightFront.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
