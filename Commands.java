@@ -387,14 +387,15 @@ public class Commands extends HardwareMapping{
         leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        leftFront.setPower(this.calculatePower(power));
-        leftRear.setPower(power);
-        rightFront.setPower(power);
-        rightRear.setPower(power);
 
         while ( ( runtime.seconds() < timeout ) &&
                 (leftFront.isBusy() || rightFront.isBusy() || leftRear.isBusy() || rightRear.isBusy())
         ) {
+
+            leftFront.setPower(this.calculatePower(power));
+            leftRear.setPower(this.calculatePower(power));
+            rightFront.setPower(this.calculatePower(power));
+            rightRear.setPower(this.calculatePower(power));
 
         }
 
@@ -412,7 +413,17 @@ public class Commands extends HardwareMapping{
 
     }
     private double calculatePower(double power){
-
+        //if the distance is > 10" and traveled 10"
+        //increase the power by 0.01
+        if ( encoder steps 1000 and  encode steps > ){
+            power += 0.01;
+        }
+        else if ( current step position - total amount < 1000 ){
+            power -= 0.01;
+        }
+        else{
+            power = 0.5;
+        }
         return power;
     }
 }
