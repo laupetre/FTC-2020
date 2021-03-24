@@ -65,6 +65,15 @@ public class HardwareMapping
     public Servo wobbleGoalClampServo = null;
     public DcMotor inclineMotor = null;
 
+    private DcMotor conveyorMotor;
+    private DcMotor launcherMotor;
+    private DcMotor wobbleGoalMotor;
+    private CRServo intakeServo;
+    private Servo wobbleGoalClampServo;
+    private Servo inclineMotor;
+    private DcMotor conveyorBeltMotor;
+
+
 
     //public DcMotor  leftArm     = null;
     //public Servo    leftClaw    = null;
@@ -73,6 +82,7 @@ public class HardwareMapping
     public static final double MID_SERVO       =  0.5 ;
     public static final double ARM_UP_POWER    =  0.45 ;
     public static final double ARM_DOWN_POWER  = -0.45 ;
+
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -122,7 +132,7 @@ public class HardwareMapping
         leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-
+       // wobbleGoalClampServo.setPosition();
     }
  }
 
