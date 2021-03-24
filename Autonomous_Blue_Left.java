@@ -90,6 +90,7 @@ public class Autonomous_Blue_Left extends LinearOpMode {
 
             //face forward
             commands.rightRearPivot(-10, 0.5, 3);
+            sleep(100);
 
             //move to A B or C - 0 1 4
             if (rings == 0){
