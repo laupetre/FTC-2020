@@ -429,4 +429,32 @@ public class Commands extends HardwareMapping{
          */
         return power;
     }
+
+    /**
+     *
+     * @param position 0-closed, 0.5-open
+     */
+    public void wobbleGoalClaw(double position){
+        wobbleGoalClampServo.setPosition(position);
+    };
+
+    public void woableGoalElevator(){
+
+        int timeout = 1;
+        int position = 5000;
+        double power = 0.5;
+
+        runtime.reset();
+
+        wobbleGoalMotor.setTargetPosition(position);
+        wobbleGoalMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        wobbleGoalMotor.setPower(power);
+
+        while ( ( runtime.seconds() < timeout ) && wobbleGoalMotor.isBusy()) {
+            //wait
+        }
+
+        wobbleGoalMotor.setPower(0);
+        wobbleGoalMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    };
 }

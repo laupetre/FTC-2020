@@ -88,6 +88,13 @@ public class Autonomous_Blue_Left extends LinearOpMode {
 
         while(opModeIsActive()) {
 
+            commands.wobbleGoalClaw(0);
+            sleep(1000);
+            commands.wobbleGoalClaw(0.5);
+            sleep(1000);
+            commands.woableGoalElevator();
+            sleep(30000);
+
             //face forward
             commands.rightRearPivot(-10, 0.5, 3);
             sleep(100);

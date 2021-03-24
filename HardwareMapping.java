@@ -64,15 +64,7 @@ public class HardwareMapping
     public CRServo intakeServo = null;
     public Servo wobbleGoalClampServo = null;
     public DcMotor inclineMotor = null;
-
-    private DcMotor conveyorMotor;
-    private DcMotor launcherMotor;
-    private DcMotor wobbleGoalMotor;
-    private CRServo intakeServo;
-    private Servo wobbleGoalClampServo;
-    private Servo inclineMotor;
-    private DcMotor conveyorBeltMotor;
-
+    private DcMotor conveyorBeltMotor = null;
 
 
     //public DcMotor  leftArm     = null;
@@ -109,7 +101,7 @@ public class HardwareMapping
         intakeServo = hwMap.get(CRServo.class, "intakeServo");
         wobbleGoalClampServo = hwMap.get(Servo.class, "wobbleGoalClampServo");
         inclineMotor = hwMap.get(DcMotor.class, "inclineMotor");
-
+        conveyorBeltMotor = hwMap.get(DcMotor.class, "conveyorBeltMotor");
 
         // leftArm    = hwMap.get(DcMotor.class, "left_arm");
 
@@ -117,13 +109,15 @@ public class HardwareMapping
         rightFront.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         leftRear.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rightRear.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
-
+        wobbleGoalMotor.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         leftFront.setPower(0);
         rightFront.setPower(0);
         leftRear.setPower(0);
         rightRear.setPower(0);
+        wobbleGoalMotor.setPower(0);
+        wobbleGoalClampServo.setPosition(0.5);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -131,6 +125,7 @@ public class HardwareMapping
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        wobbleGoalMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
        // wobbleGoalClampServo.setPosition();
     }
