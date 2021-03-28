@@ -100,7 +100,7 @@ public class HardwareMapping
         wobbleGoalMotor = hwMap.get(DcMotor.class, "wobbleGoalMotor");
         intakeServo = hwMap.get(CRServo.class, "intakeServo");
         wobbleGoalClampServo = hwMap.get(Servo.class, "wobbleGoalClampServo");
-        inclineMotor = hwMap.get(DcMotor.class, "inclineMotor");
+ //       inclineMotor = hwMap.get(DcMotor.class, "inclineMotor");
         conveyorBeltMotor = hwMap.get(DcMotor.class, "conveyorBeltMotor");
 
         // leftArm    = hwMap.get(DcMotor.class, "left_arm");
