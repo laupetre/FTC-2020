@@ -3,6 +3,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.vuforia.CameraDevice;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -78,8 +79,9 @@ public class RingDetector  {
     public void init(HardwareMap hardwareMap) {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
-        initVuforia();
+        initVuforia(hardwareMap);
         initTfod(hardwareMap);
+
 
         /**
          * Activate TensorFlow Object Detection before we wait for the start command.
@@ -96,7 +98,7 @@ public class RingDetector  {
             // (typically 1.78 or 16/9).
 
             // Uncomment the following line if you want to adjust the magnification and/or the aspect ratio of the input images.
-            tfod.setZoom(1.5, 1.78);
+            tfod.setZoom(2, 1.78);
         }
 
 /*
@@ -110,7 +112,7 @@ public class RingDetector  {
     /**
      * Initialize the Vuforia localization engine.
      */
-    private void initVuforia() {
+    private void initVuforia(HardwareMap hardwareMap) {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
          */
@@ -121,6 +123,9 @@ public class RingDetector  {
 
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        //turn flash ON
+        CameraDevice.getInstance().setFlashTorchMode(true);
 
         // Loading trackables is not necessary for the TensorFlow Object Detection engine.
     }

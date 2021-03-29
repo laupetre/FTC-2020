@@ -441,7 +441,7 @@ public class Commands extends HardwareMapping{
     public void woableGoalElevator(){
 
         int timeout = 1;
-        int position = 5000;
+        int position = 7000;
         double power = 0.5;
 
         runtime.reset();
