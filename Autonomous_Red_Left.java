@@ -79,6 +79,13 @@ public class Autonomous_Red_Left extends LinearOpMode {
 
         //detect the rings
         rings = ringDetector.ringDectorLoop();
+        sleep(200);
+
+        //grab the wooble
+        commands.wobbleGoalClaw(0);
+        sleep(200);
+        //lift the wooble
+        commands.woableGoalElevator();
 
         telemetry.addData("rings : ", rings);
         telemetry.update();
@@ -90,65 +97,57 @@ public class Autonomous_Red_Left extends LinearOpMode {
 
             //face forward
             commands.rightRearPivot(-10, 0.5, 3);
-
-            // move the robot to the shooting zone
-            commands.moveForward(48, 0.5, 5);
-            // move to A B or C zone based on how many rings detected
-
-            //shoot the rings
-            //decide if we slide the robot or turn it CCW
+            sleep(200);
 
             //move to A B or C - 0 1 4
             if (rings == 0){
                 //move forward then slide to drop off the wabble
-                commands.moveForward(12,0.5,3);
-                sleep(100);
-                commands.rotateCounterClockwise(9,0.5,3);
-                sleep(100);
-                commands.moveBackwards(48,0.5,10);
-                sleep(100);
-                commands.slideLeft(10,0.5,4);
-                sleep(100);
-                //drop off the wobble
-                commands.slideRight(10,0.5,4);
-                sleep(100);
-                commands.moveForward(20,0.5,5);
-                sleep(100);
-                //park on the line
-                commands.slideLeft(10,0.5,4);
+                commands.moveForward(72,0.5,5);
+                sleep(200);
+                commands.rotateClockwise(22,0.5,3);
+                sleep(200);
+                commands.moveForward(48,0.5,10);
+                sleep(200);
+
+                //drop wobble
+                commands.wobbleGoalClaw(0.5);
 
                 sleep(30000);
             }
             else if (rings == 1){
                 //move forward rotate 180 slide to the left drop off wobble
                 //slide to the right, move forward and park
-                commands.moveForward(24,0.5,4);
-                sleep(100);
-                commands.rotateClockwise(12,0.5,4);
-                sleep(100);
-                commands.slideLeft(12,0.5,6);
-                sleep(100);
-                //drop off wobble
+                commands.moveForward(100,0.5,10);
+                sleep(200);
+                commands.slideRight(36,0.5,5);
+                sleep(200);
 
-                commands.slideRight(12,0.5,5);
-                sleep(100);
-                commands.moveForward(24,0.5,5);
+                //drop off wobble
+                commands.wobbleGoalClaw(0.5);
+                sleep(200);
+                commands.slideRight(6,0.5,5);
+                sleep(200);
+
+                commands.moveBackwards(24,0.5,5);
 
                 sleep(30000);
             }
             else {
                 //move forward turn CW move forward drop off wobble move back slide right and park
-                commands.moveForward(55,0.5,10);
-                sleep(100);
-                commands.rotateClockwise(12,0.5,3);
-                sleep(100);
-                commands.moveForward(48,0.5,10);
-                sleep(100);
-                //drop the wobble
+                commands.moveForward(125,0.5,10);
+                sleep(200);
 
-                commands.moveBackwards(10,0.5,4);
-                sleep(100);
-                commands.slideRight(55,0.5,10);
+                commands.rotateClockwise(22,0.5,3);
+                sleep(200);
+                commands.moveForward(48,0.5,10);
+                sleep(200);
+
+                //drop wobble
+                commands.wobbleGoalClaw(0.5);
+                sleep(200);
+
+                commands.slideRight(48
+                        ,0.5,10);
 
                 sleep(30000);
             }
